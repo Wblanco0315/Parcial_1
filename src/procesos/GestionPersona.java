@@ -8,8 +8,12 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class GestionPersona {
-    int menu1=0, menu2=0, menu3=0;
+    int menu1=0, menu2=0, menu3=0, mayor, menor;
+    int lunes1=0, martes1=0, miercoles1=0, jueves1=0, viernes1=0;
+    int lunes2=0, martes2=0, miercoles2=0, jueves2=0, viernes2=0;
+    int lunes3=0, martes3=0, miercoles3=0, jueves3=0, viernes3=0;
     String menuN;
+    String diaN;
 
     String nombre;
     String codigo;
@@ -53,10 +57,31 @@ public class GestionPersona {
         
         if("Menu 1".equals(menu)){ //estos if anidados es para que vaya guardando la cantidad de cada menu
             menu1++;
+            switch(dia){
+                case "Lunes" -> lunes1++;
+                case "Martes" -> martes1++;
+                case "Miercoles" -> miercoles1++;
+                case "Jueves" -> jueves1++;
+                case "Viernes" -> viernes1++;
+            }
         }else if("Menu 2".equals(menu)){
             menu2++;
+            switch(dia){
+                case "Lunes" -> lunes2++;
+                case "Martes" -> martes2++;
+                case "Miercoles" -> miercoles2++;
+                case "Jueves" -> jueves2++;
+                case "Viernes" -> viernes2++;
+            }
         }else{
             menu3++;
+            switch(dia){
+                case "Lunes" -> lunes3++;
+                case "Martes" -> martes3++;
+                case "Miercoles" -> miercoles3++;
+                case "Jueves" -> jueves3++;
+                case "Viernes" -> viernes3++;
+            }
         }
 
         if (nombre.equals("") || codigo.equals("")) {
@@ -117,7 +142,6 @@ public class GestionPersona {
     public void masVendido(){
         /*al tomar los valores de cada menu, lo que hace es validar quien es el mayor, y asi
         guardarlo en una variable para mostrar en pantalla */
-        int mayor=0;
         if(menu1>menu2 && menu1>menu3){
             mayor=menu1;
             menuN = "Menu 1";
@@ -134,7 +158,6 @@ public class GestionPersona {
     public void menosVendido(){
         /*al tomar los valores de cada menu, lo que hace es validar quien es el menor, y asi
         guardarlo en una variable para mostrar en pantalla */
-        int menor=0;
         if(menu1<menu2 && menu1<menu3){
             menor=menu1;
             menuN = "Menu 1";
@@ -195,27 +218,51 @@ public class GestionPersona {
             }
         }
         return false;
-    }
-    
+    }     
     
     public void mayorDia_menorDia(){
-        int op = Integer.parseInt(JOptionPane.showInputDialog("Escoja un menu"
-                + "\n1. Menu 1"
-                + "\n2. Menu 2"
-                + "\n3. Menu 3"));
+        int lunesT=lunes1+lunes2+lunes3;
+        int martesT=martes1+martes2+martes3;
+        int miercolesT=miercoles1+miercoles2+miercoles3;
+        int juevesT=jueves1+jueves2+jueves3;
+        int viernesT=viernes1+viernes2+viernes3;
         
-        switch (op) {
-            case 1 ->{
-                
-            }
-            case 2 ->{
-                
-            }
-            case 3 ->{
-                
-            }
-            default -> JOptionPane.showMessageDialog(null, "Ha ingresado una opción incorrecta");
+        if(lunesT>martesT && lunesT>miercolesT && lunesT>juevesT && lunesT>viernesT){
+            mayor=lunesT;
+            diaN="Lunes";
+        }else if(martesT>miercolesT && martesT>juevesT && martesT>viernesT){
+            mayor=martesT;
+            diaN="Martes";
+        }else if(miercolesT>juevesT && miercolesT>viernesT){
+            mayor=miercolesT;
+            diaN="Miercoles";
+        }else if(juevesT>viernesT){
+            mayor=juevesT;
+            diaN="Jueves";
+        }else{
+            mayor=viernesT;
+            diaN="Viernes";
         }
+        JOptionPane.showMessageDialog(null, "el dia que mas se vendio fue el "+diaN+" con "+mayor+" menus comprados");
+        //sacamos el menor
+        
+        if(lunesT<martesT && lunesT<miercolesT && lunesT<juevesT && lunesT<viernesT){
+            menor=lunesT;
+            diaN="Lunes";
+        }else if(martesT<miercolesT && martesT<juevesT && martesT<viernesT){
+            menor=martesT;
+            diaN="Martes";
+        }else if(miercolesT<juevesT && miercolesT<viernesT){
+            menor=miercolesT;
+            diaN="Miercoles";
+        }else if(juevesT<viernesT){
+            menor=juevesT;
+            diaN="Jueves";
+        }else{
+            menor=viernesT;
+            diaN="Viernes";
+        }
+        JOptionPane.showMessageDialog(null, "el dia que menos se vendio fue el "+diaN+" con "+menor+" menus comprados");  
     }
     
     public void diaMasVendidoDelMenu(){
@@ -227,13 +274,61 @@ public class GestionPersona {
         //se recorre la fila de cada menu y devuelve el dia con mas ventas
         switch (op) {
             case 1 ->{
-                
+                if(lunes1>martes1 && lunes1>miercoles1 && lunes1>jueves1 && lunes1>viernes1){
+                    mayor=lunes1;
+                    diaN="Lunes";
+                }else if(martes1>miercoles1 && martes1>jueves1 && martes1>viernes1){
+                    mayor=martes1;
+                    diaN="Martes";
+                }else if(miercoles1>jueves1 && miercoles1>viernes1){
+                    mayor=miercoles1;
+                    diaN="Miercoles";
+                }else if(jueves1>viernes1){
+                    mayor=jueves1;
+                    diaN="Jueves";
+                }else{
+                    mayor=viernes1;
+                    diaN="Viernes";
+                }
+                JOptionPane.showMessageDialog(null, "El dia mas vendido del menu 1 fue el "+diaN+" con "+mayor+" menus vendidos");
             }
             case 2 ->{
-                
+                if(lunes2>martes2 && lunes2>miercoles2 && lunes2>jueves2 && lunes2>viernes2){
+                    mayor=lunes2;
+                    diaN="Lunes";
+                }else if(martes2>miercoles2 && martes2>jueves2 && martes2>viernes2){
+                    mayor=martes2;
+                    diaN="Martes";
+                }else if(miercoles2>jueves2 && miercoles2>viernes2){
+                    mayor=miercoles2;
+                    diaN="Miercoles";
+                }else if(jueves2>viernes2){
+                    mayor=jueves2;
+                    diaN="Jueves";
+                }else{
+                    mayor=viernes2;
+                    diaN="Viernes";
+                }
+                JOptionPane.showMessageDialog(null, "El dia mas vendido del menu 2 fue el "+diaN+" con "+mayor+" menus vendidos");
             }
             case 3 ->{
-                
+                if(lunes3>martes3 && lunes3>miercoles3 && lunes3>jueves3 && lunes3>viernes3){
+                    mayor=lunes3;
+                    diaN="Lunes";
+                }else if(martes3>miercoles3 && martes3>jueves3 && martes3>viernes3){
+                    mayor=martes3;
+                    diaN="Martes";
+                }else if(miercoles3>jueves3 && miercoles3>viernes3){
+                    mayor=miercoles3;
+                    diaN="Miercoles";
+                }else if(jueves3>viernes3){
+                    mayor=jueves3;
+                    diaN="Jueves";
+                }else{
+                    mayor=viernes3;
+                    diaN="Viernes";
+                }
+                JOptionPane.showMessageDialog(null, "El dia mas vendido del menu 3 fue el "+diaN+" con "+mayor+" menus vendidos");
             }
             default -> JOptionPane.showMessageDialog(null, "Ha ingresado una opción incorrecta");
         }
