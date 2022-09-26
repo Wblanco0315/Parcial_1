@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class GestionPersona {
+    int menu1=0, menu2=0, menu3=0;
+    String menuN;
 
     String nombre;
     String codigo;
@@ -31,6 +33,14 @@ public class GestionPersona {
         //Crea un objeto de tipo persona y llena los atributos
         persona = new Persona(nombre, codigo, menu, dia);
         //Añade el objeto a la lista
+        
+        if("Menu 1".equals(menu)){ //estos if anidados es para que vaya guardando la cantidad de cada menu
+            menu1++;
+        }else if("Menu 2".equals(menu)){
+            menu2++;
+        }else{
+            menu3++;
+        }
 
         if (nombre.equals("") || codigo.equals("")) {
             JOptionPane.showMessageDialog(null, "Hay campos vacios");
@@ -38,7 +48,7 @@ public class GestionPersona {
         }
         listaPersonas.add(persona);
         JOptionPane.showMessageDialog(null, "El " + menu + "\nComprado por: " + nombre + "\nCodigo: " + codigo + "\nPara el dia: " + dia);
-        return;
+        return;             
     }
 
     public void retirar() {
@@ -82,10 +92,56 @@ public class GestionPersona {
     }
 
     public void sumarMenus() {
-
+        
     }
 
     public void sumaTotal() {
         //tomamos los resultados de sumaroMenus y los sumamos
+    }
+    
+    public void masVendido(){
+        /*al tomar los valores de cada menu, lo que hace es validar quien es el mayor, y asi
+        guardarlo en una variable para mostrar en pantalla */
+        int mayor=0;
+        if(menu1>menu2 && menu1>menu3){
+            mayor=menu1;
+            menuN = "Menu 1";
+        }else if(menu2>menu1 && menu2>menu3){
+            mayor=menu2;
+            menuN = "Menu 2";
+        }else{
+            mayor=menu3;
+            menuN = "Menu 3";
+        }       
+        JOptionPane.showMessageDialog(null, "El Menu mas vendido fue el "+menuN+" con "+mayor+" compras");
+    }
+    
+    public void menosVendido(){
+        /*al tomar los valores de cada menu, lo que hace es validar quien es el menor, y asi
+        guardarlo en una variable para mostrar en pantalla */
+        int menor=0;
+        if(menu1<menu2 && menu1<menu3){
+            menor=menu1;
+            menuN = "Menu 1";
+        }else if(menu2<menu1 && menu2<menu3){
+            menor=menu2;
+            menuN = "Menu 2";
+        }else{
+            menor=menu3;
+            menuN = "Menu 3";
+        }       
+        JOptionPane.showMessageDialog(null, "El Menu menos vendido fue el "+menuN+" con "+menor+" compras");
+    }
+    
+    public void ventas(){
+        //tomamos los valores guardados del agregar y lo mostramos en pantalla
+        JOptionPane.showMessageDialog(null, "Menu 1: "+menu1+"\nMenu 2: "+menu2+"\nMenu3: "+menu3);
+    }
+    
+    public void total(){
+        //sumamos los menus
+        int total = menu1+menu2+menu3;
+        
+        JOptionPane.showMessageDialog(null,"El total vendido fue de "+total+" menus");
     }
 }

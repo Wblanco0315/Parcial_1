@@ -200,14 +200,17 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnMasVendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasVendidoActionPerformed
         //Llamamos al metodo sumarMenus, comparamos los resultados y mostramos el mayor
+        gestion.masVendido();
     }//GEN-LAST:event_btnMasVendidoActionPerformed
 
     private void btnMenosVendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosVendidoActionPerformed
         //Llamamos al metodo sumarMenus, comparamos los resultados y mostramos el menor
+        gestion.menosVendido();
     }//GEN-LAST:event_btnMenosVendidoActionPerformed
 
     private void btnVentasPorMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasPorMenuActionPerformed
         //Llamamos al metodo sumarMenus y mostramos cada uno de los resultados
+        gestion.ventas();
     }//GEN-LAST:event_btnVentasPorMenuActionPerformed
 
     private void btnPromedioPorMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromedioPorMenuActionPerformed
@@ -216,6 +219,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnTotalVendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalVendidoActionPerformed
         //Llamamos al metodo sumaTotal y mostramos su resutado
+        gestion.total();
     }//GEN-LAST:event_btnTotalVendidoActionPerformed
 
     private void btnSeleccionarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarMenuActionPerformed
