@@ -7,7 +7,12 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class GestionPersona {
-    Menu interfaz;
+    String nombre;
+    String codigo;
+    String menu;
+    String dia;
+    
+    //Menu interfaz;
     Persona persona;
     ArrayList<Persona> listaPersonas;
 
@@ -19,20 +24,48 @@ public class GestionPersona {
 
     public void agregar() {
         //Guarda los datos de los inputs en variables
-        String nombre =String.valueOf(interfaz.txtNombre.getText());
-        String codigo = String.valueOf(interfaz.txtCodigo.getText());
-        String menu = String.valueOf(interfaz.comboBoxMenu.getSelectedItem());
-        String dia = String.valueOf(interfaz.comboBoxDia.getSelectedItem());
+        nombre =String.valueOf(Menu.txtNombre.getText());
+        codigo = String.valueOf(Menu.txtCodigo.getText());
+        menu = String.valueOf(Menu.comboBoxMenu.getSelectedItem());
+        dia = String.valueOf(Menu.comboBoxDia.getSelectedItem());
         //Crea un objeto de tipo persona y llena los atributos
         persona = new Persona(nombre, codigo, menu, dia);
         //Añade el objeto a la lista
-        listaPersonas.add(persona);
-        JOptionPane.showMessageDialog(null,"El "+menu+" comprado por "+nombre+" con codigo "+codigo+" Para el dia "+dia);
+        
+        if(nombre.equals("") && codigo.equals("")){
+            JOptionPane.showMessageDialog(null, "Hay campos vacios");
+        }
+        else{
+            listaPersonas.add(persona);
+            JOptionPane.showMessageDialog(null,"El "+menu+"\nComprado por: "+nombre+"\nCodigo: "+codigo+"\nPara el dia: "+dia);
+        }
+    }
+    
+    public void retirar(){
+        int posicion = 0;
+        String cod = JOptionPane.showInputDialog("Ingrese su codigo");
+        
+        if(cod.equals("")){
+            JOptionPane.showMessageDialog(null, "No se ingresó el codigo");
+        }
+        else if(codigo == null){
+            JOptionPane.showMessageDialog(null, "no se han agregado almuerzos previamente");
+        }
+        else if(cod.equals(codigo)){
+            listaPersonas.remove(posicion);
+            JOptionPane.showMessageDialog(null, "El almuerzo fue entregado al usuario");
+            posicion++;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "los codigos no coinciden");
+        }
     }
 
     public void sumarMenus() {
-        //hacemos la sumatoria de las filas con los almuezos vendidos
+        
     }
+    
+    
 
     public void sumaTotal() {
         //tomamos los resultados de sumaroMenus y los sumamos

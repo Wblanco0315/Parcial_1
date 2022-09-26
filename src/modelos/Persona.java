@@ -45,6 +45,10 @@ public class Persona {
     public void setDia(String dia) {
         this.dia = dia;
     }
+
+    public boolean datos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
     
