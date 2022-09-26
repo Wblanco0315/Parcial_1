@@ -217,4 +217,46 @@ public class GestionPersona {
             default -> JOptionPane.showMessageDialog(null, "Ha ingresado una opción incorrecta");
         }
     }
+    
+    public void diaMasVendidoDelMenu(){
+        int op = Integer.parseInt(JOptionPane.showInputDialog("Escoja un menu"
+                + "\n1. Menu 1"
+                + "\n2. Menu 2"
+                + "\n3. Menu 3"));
+        
+        //se recorre la fila de cada menu y devuelve el dia con mas ventas
+        switch (op) {
+            case 1 ->{
+                
+            }
+            case 2 ->{
+                
+            }
+            case 3 ->{
+                
+            }
+            default -> JOptionPane.showMessageDialog(null, "Ha ingresado una opción incorrecta");
+        }
+    }
+    
+    public void diaMenosVendidoDelMenu(){
+        int op = Integer.parseInt(JOptionPane.showInputDialog("Escoja un menu"
+                + "\n1. Menu 1"
+                + "\n2. Menu 2"
+                + "\n3. Menu 3"));
+        
+        //se recorre la fila de cada menu y devuelve el dia con menos ventas
+        switch (op) {
+            case 1 ->{
+                
+            }
+            case 2 ->{
+                
+            }
+            case 3 ->{
+                
+            }
+            default -> JOptionPane.showMessageDialog(null, "Ha ingresado una opción incorrecta");
+        }
+    }
 }

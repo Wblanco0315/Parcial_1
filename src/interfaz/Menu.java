@@ -30,7 +30,6 @@ public class Menu extends javax.swing.JFrame {
         btnVentasPorMenu = new javax.swing.JButton();
         btnPromedioPorMenu = new javax.swing.JButton();
         btnTotalVendido = new javax.swing.JButton();
-        btnSeleccionarMenu = new javax.swing.JButton();
         txtNombre = new javax.swing.JTextField();
         btnRetirar = new javax.swing.JButton();
         comboBoxDia = new javax.swing.JComboBox<>();
@@ -41,6 +40,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        diaMasVendidoDelMenu = new javax.swing.JButton();
+        diaMenosVendidoDelMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,13 +93,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnSeleccionarMenu.setText("Seleccionar menu");
-        btnSeleccionarMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSeleccionarMenuActionPerformed(evt);
-            }
-        });
-
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -133,6 +127,20 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel8.setText("Oscar Julian Llain Peñaranda - 192015");
 
+        diaMasVendidoDelMenu.setText("Dia mas vendido del menu");
+        diaMasVendidoDelMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaMasVendidoDelMenuActionPerformed(evt);
+            }
+        });
+
+        diaMenosVendidoDelMenu.setText("Dia menos vendido del menu");
+        diaMenosVendidoDelMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaMenosVendidoDelMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -160,45 +168,32 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addComponent(btnAgregar))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))))
-                .addGap(178, 178, 178)
+                .addGap(180, 180, 180)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSeleccionarMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnTotalVendido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMenosVendido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMasVendido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mayorDia_menorDia, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(mayorDia_menorDia))
                     .addComponent(btnPromedioPorMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVentasPorMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnVentasPorMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(diaMasVendidoDelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(diaMenosVendidoDelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnMasVendido)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnMenosVendido)
-                        .addGap(29, 29, 29)
-                        .addComponent(btnVentasPorMenu)
-                        .addGap(29, 29, 29)
-                        .addComponent(btnPromedioPorMenu)
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(mayorDia_menorDia)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addComponent(btnTotalVendido)
-                                .addGap(29, 29, 29)
-                                .addComponent(btnSeleccionarMenu))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -220,16 +215,38 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(btnAgregar)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(52, 52, 52)
-                                .addComponent(btnRetirar)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                        .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
+                                .addComponent(btnRetirar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnMasVendido)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnMenosVendido)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnVentasPorMenu)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnPromedioPorMenu)
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mayorDia_menorDia)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(btnTotalVendido)))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(diaMasVendidoDelMenu)
+                        .addGap(20, 20, 20)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(diaMenosVendidoDelMenu))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
-                .addGap(46, 46, 46))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -264,10 +281,6 @@ public class Menu extends javax.swing.JFrame {
         gestion.total();
     }//GEN-LAST:event_btnTotalVendidoActionPerformed
 
-    private void btnSeleccionarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarMenuActionPerformed
-        //Le decimos al usuario que seleccione uno de los menus y que le pase el dia que va a tener mas ventas y menos ventas
-    }//GEN-LAST:event_btnSeleccionarMenuActionPerformed
-
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
@@ -275,6 +288,14 @@ public class Menu extends javax.swing.JFrame {
     private void mayorDia_menorDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mayorDia_menorDiaActionPerformed
         gestion.mayorDia_menorDia();
     }//GEN-LAST:event_mayorDia_menorDiaActionPerformed
+
+    private void diaMasVendidoDelMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaMasVendidoDelMenuActionPerformed
+        gestion.diaMasVendidoDelMenu();
+    }//GEN-LAST:event_diaMasVendidoDelMenuActionPerformed
+
+    private void diaMenosVendidoDelMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaMenosVendidoDelMenuActionPerformed
+        gestion.diaMenosVendidoDelMenu();
+    }//GEN-LAST:event_diaMenosVendidoDelMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,11 +341,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnMenosVendido;
     private javax.swing.JButton btnPromedioPorMenu;
     private javax.swing.JButton btnRetirar;
-    private javax.swing.JButton btnSeleccionarMenu;
     private javax.swing.JButton btnTotalVendido;
     private javax.swing.JButton btnVentasPorMenu;
     public static javax.swing.JComboBox<String> comboBoxDia;
     public static javax.swing.JComboBox<String> comboBoxMenu;
+    private javax.swing.JButton diaMasVendidoDelMenu;
+    private javax.swing.JButton diaMenosVendidoDelMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
