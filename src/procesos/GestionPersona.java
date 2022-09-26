@@ -113,13 +113,6 @@ public class GestionPersona {
         return -1;
     }
 
-    public void sumarMenus() {
-        
-    }
-
-    public void sumaTotal() {
-        //tomamos los resultados de sumaroMenus y los sumamos
-    }
     
     public void masVendido(){
         /*al tomar los valores de cada menu, lo que hace es validar quien es el mayor, y asi
@@ -163,32 +156,36 @@ public class GestionPersona {
     public void total(){
         //sumamos los menus
         int total = menu1+menu2+menu3;
-        
         JOptionPane.showMessageDialog(null,"El total vendido fue de "+total+" menus");
     }
+    
+    
     public void promedioSemana(){
-        double promedio=0;
+        double promedio;
         int n = Integer.parseInt(JOptionPane.showInputDialog("""
-                                                                  Ingrese el menu que desea conocer el promedio
-                                                                  1. Menu 1
-                                                                  2. Menu 2
-                                                                  3. Menu 3"""));
+                Ingrese el menu que desea conocer el promedio
+                1. Menu 1
+                2. Menu 2
+                3. Menu 3"""));
         
         switch(n){
             case 1 -> { 
-                //promedio=Double.parseDouble(menu1)/5;
+                promedio = Double.valueOf(menu1)/5;
                 JOptionPane.showMessageDialog(null, "El promedio de ventas de la semana del Menu 1 es "+promedio);
-            }           
+            }
             case 2 -> {
-                //promedio=Double.parseDouble(menu2)/5;
+                promedio = Double.valueOf(menu2)/5;
                 JOptionPane.showMessageDialog(null, "El promedio de ventas de la semana del Menu 2 es "+promedio);
-            }           
+            }
             case 3 -> {
-                //promedio=Double.parseDouble(menu3)/5;
+                promedio = Double.valueOf(menu3)/5;
                 JOptionPane.showMessageDialog(null, "El promedio de ventas de la semana del Menu 3 es "+promedio);
             }
-        }    
-    }
+            
+            default -> JOptionPane.showMessageDialog(null, "Ha ingresado una opción incorrecta");
+        }
+        //realizamos el calculo de las ventas de los menus entre el numero de dias de la semana
+            }
     private boolean almuerzoRep(String codigo, String dia) {
         for (Persona persona : listaPersonas) {
             if (persona != null) {
@@ -198,5 +195,26 @@ public class GestionPersona {
             }
         }
         return false;
+    }
+    
+    
+    public void mayorDia_menorDia(){
+        int op = Integer.parseInt(JOptionPane.showInputDialog("Escoja un menu"
+                + "\n1. Menu 1"
+                + "\n2. Menu 2"
+                + "\n3. Menu 3"));
+        
+        switch (op) {
+            case 1 ->{
+                
+            }
+            case 2 ->{
+                
+            }
+            case 3 ->{
+                
+            }
+            default -> JOptionPane.showMessageDialog(null, "Ha ingresado una opción incorrecta");
+        }
     }
 }
