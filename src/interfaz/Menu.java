@@ -215,6 +215,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnPromedioPorMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromedioPorMenuActionPerformed
         //Con los resultados del metodo sumarMenus vamos a hallar el promedio
+        gestion.promedioSemana();
     }//GEN-LAST:event_btnPromedioPorMenuActionPerformed
 
     private void btnTotalVendidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalVendidoActionPerformed

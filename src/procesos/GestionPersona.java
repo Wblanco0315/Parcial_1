@@ -1,6 +1,8 @@
 package procesos;
 
 import interfaz.Menu;
+import static interfaz.Menu.txtCodigo;
+import static interfaz.Menu.txtNombre;
 import modelos.Persona;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -34,6 +36,21 @@ public class GestionPersona {
         persona = new Persona(nombre, codigo, menu, dia);
         //Añade el objeto a la lista
         
+        try{
+            Integer.parseInt(codigo);
+        } catch (Exception errors) {
+            JOptionPane.showMessageDialog(null, "El codigo debe ser solo numerico",
+                    "Error " + errors.getMessage(), JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        //Valida que el codigo sea posible agregarse a la lista si es un valor numerico
+         if(almuerzoRep(codigo, dia)) {
+            JOptionPane.showMessageDialog(null, "Ya has comprado almuerzo para el dia " + dia,
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        //Valida que una persona no compre mas de 1 almuerzo el mismo dia 
+        
         if("Menu 1".equals(menu)){ //estos if anidados es para que vaya guardando la cantidad de cada menu
             menu1++;
         }else if("Menu 2".equals(menu)){
@@ -45,10 +62,15 @@ public class GestionPersona {
         if (nombre.equals("") || codigo.equals("")) {
             JOptionPane.showMessageDialog(null, "Hay campos vacios");
             return;
+        }else{
+            txtNombre.setText("");
+            txtCodigo.setText("");
         }
         listaPersonas.add(persona);
         JOptionPane.showMessageDialog(null, "El " + menu + "\nComprado por: " + nombre + "\nCodigo: " + codigo + "\nPara el dia: " + dia);
-        return;             
+        return;
+        
+        
     }
 
     public void retirar() {
@@ -143,5 +165,38 @@ public class GestionPersona {
         int total = menu1+menu2+menu3;
         
         JOptionPane.showMessageDialog(null,"El total vendido fue de "+total+" menus");
+    }
+    public void promedioSemana(){
+        double promedio=0;
+        int n = Integer.parseInt(JOptionPane.showInputDialog("""
+                                                                  Ingrese el menu que desea conocer el promedio
+                                                                  1. Menu 1
+                                                                  2. Menu 2
+                                                                  3. Menu 3"""));
+        
+        switch(n){
+            case 1 -> { 
+                //promedio=Double.parseDouble(menu1)/5;
+                JOptionPane.showMessageDialog(null, "El promedio de ventas de la semana del Menu 1 es "+promedio);
+            }           
+            case 2 -> {
+                //promedio=Double.parseDouble(menu2)/5;
+                JOptionPane.showMessageDialog(null, "El promedio de ventas de la semana del Menu 2 es "+promedio);
+            }           
+            case 3 -> {
+                //promedio=Double.parseDouble(menu3)/5;
+                JOptionPane.showMessageDialog(null, "El promedio de ventas de la semana del Menu 3 es "+promedio);
+            }
+        }    
+    }
+    private boolean almuerzoRep(String codigo, String dia) {
+        for (Persona persona : listaPersonas) {
+            if (persona != null) {
+                if (persona.getCodigo().equals(codigo) && persona.getDia().equals(dia)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
