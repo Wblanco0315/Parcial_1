@@ -40,6 +40,14 @@ public class GestionPersona {
         persona = new Persona(nombre, codigo, menu, dia);
         //Añade el objeto a la lista
         
+        if (nombre.equals("") || codigo.equals("")) {
+            JOptionPane.showMessageDialog(null, "Hay campos vacios");
+            return;
+        }else{
+            txtNombre.setText("");
+            txtCodigo.setText("");
+        }
+        
         try{
             Integer.parseInt(codigo);
         } catch (Exception errors) {
@@ -84,13 +92,7 @@ public class GestionPersona {
             }
         }
 
-        if (nombre.equals("") || codigo.equals("")) {
-            JOptionPane.showMessageDialog(null, "Hay campos vacios");
-            return;
-        }else{
-            txtNombre.setText("");
-            txtCodigo.setText("");
-        }
+      
         listaPersonas.add(persona);
         JOptionPane.showMessageDialog(null, "El " + menu + "\nComprado por: " + nombre + "\nCodigo: " + codigo + "\nPara el dia: " + dia);
         return;
@@ -280,6 +282,12 @@ public class GestionPersona {
         
         switch (op) {
             case 1 ->{
+                if(lunes1 == 0 && martes2 == 0 && miercoles1 == 0 && jueves1 == 0 && viernes1 == 0){
+                    diaN = "Lunes, Martes, Miercoles, Jueves, Viernes";
+                    JOptionPane.showMessageDialog(null, "son iguales");
+                    break;
+                }
+                
                 if(lunes1>martes1 && lunes1>miercoles1 && lunes1>jueves1 && lunes1>viernes1){
                     mayor=lunes1;
                     diaN="Lunes";
@@ -297,6 +305,8 @@ public class GestionPersona {
                     diaN="Viernes";
                 }
                 JOptionPane.showMessageDialog(null, "El dia mas vendido del menu 1 fue el "+diaN+" con "+mayor+" menus vendidos");
+                
+                
             }
             case 2 ->{
                 if(lunes2>martes2 && lunes2>miercoles2 && lunes2>jueves2 && lunes2>viernes2){
@@ -351,6 +361,13 @@ public class GestionPersona {
         
         switch (op) {
             case 1 ->{
+                //validamos que no esté vacio
+                if(lunes1 == 0 && martes2 == 0 && miercoles1 == 0 && jueves1 == 0 && viernes1 == 0){
+                    diaN = "Lunes, Martes, Miercoles, Jueves, Viernes";
+                    JOptionPane.showMessageDialog(null, "Los dias "+diaN+" estan vacios");
+                    break;
+                }
+                
                 if(lunes1<martes1 && lunes1<miercoles1 && lunes1<jueves1 && lunes1<viernes1){
                     menor=lunes1;
                     diaN="Lunes";
@@ -374,9 +391,14 @@ public class GestionPersona {
                 JOptionPane.showMessageDialog(null, "El dia menos vendido del menu 1 fue el "+diaN+" con "+menor+" menus vendidos");
                 
             }
-            
-            
             case 2 ->{
+                //validamos que no esté vacio
+                if(lunes2 == 0 && martes2 == 0 && miercoles2 == 0 && jueves2 == 0 && viernes2 == 0){
+                    diaN = "Lunes, Martes, Miercoles, Jueves, Viernes";
+                    JOptionPane.showMessageDialog(null, "Los dias "+diaN+" estan vacios");
+                    break;
+                }
+                
                 if(lunes2<martes2 && lunes2<miercoles2 && lunes2<jueves2 && lunes2<viernes2){
                     menor=lunes2;
                     diaN="Lunes";
@@ -401,6 +423,13 @@ public class GestionPersona {
         
             }
             case 3 ->{
+                //validamos que no esté vacio
+                if(lunes3 == 0 && martes3 == 0 && miercoles3 == 0 && jueves3 == 0 && viernes3 == 0){
+                    diaN = "Lunes, Martes, Miercoles, Jueves, Viernes";
+                    JOptionPane.showMessageDialog(null, "Los dias "+diaN+" estan vacios");
+                    break;
+                }
+                
                 if(lunes3<martes3 && lunes3<miercoles3 && lunes3<jueves3 && lunes3<viernes3){
                     menor=lunes3;
                     diaN="Lunes";
