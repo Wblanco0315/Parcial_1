@@ -1,17 +1,44 @@
 package modelos;
 
-
 public class Persona {
+
     private String nombre;
     private String codigo;
+    private int edad;
+    private String sexo;
+    private String carrera;
     private String menu;
     private String dia;
 
-    public Persona(String nombre, String codigo, String menu, String dia) {
+    public Persona(String nombre, String codigo, int edad, String sexo, String carrera, String menu, String dia) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.menu = menu;
         this.dia = dia;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public String getNombre() {
@@ -46,10 +73,4 @@ public class Persona {
         this.dia = dia;
     }
 
-    public boolean datos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    
-    
 }

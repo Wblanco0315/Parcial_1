@@ -17,9 +17,11 @@ public class GestionPersona {
 
     String nombre;
     String codigo;
+    int edad;
+    String sexo;
+    String carrera;
     String menu;
     String dia;
-
     //Menu interfaz;
     Persona persona;
     ArrayList<Persona> listaPersonas;
@@ -34,10 +36,19 @@ public class GestionPersona {
         //Guarda los datos de los inputs en variables
         nombre = String.valueOf(Menu.txtNombre.getText());
         codigo = String.valueOf(Menu.txtCodigo.getText());
+        //Valida si lo ingresado en edad es un numero
+        try{
+        edad=Integer.parseInt(Menu.txtEdad.getText());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Por favor ingrese un numero");
+            return;
+        }
+        sexo=String.valueOf(Menu.comboBoxSexo.getSelectedItem());
+        carrera=String.valueOf(Menu.comboBoxCarrera.getSelectedItem());
         menu = String.valueOf(Menu.comboBoxMenu.getSelectedItem());
         dia = String.valueOf(Menu.comboBoxDia.getSelectedItem());
         //Crea un objeto de tipo persona y llena los atributos
-        persona = new Persona(nombre, codigo, menu, dia);
+        persona = new Persona(nombre, codigo,edad,sexo,carrera, menu, dia);
         //Añade el objeto a la lista
         
         if (nombre.equals("") || codigo.equals("")) {
