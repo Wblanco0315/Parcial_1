@@ -13,9 +13,14 @@ public class Persona {
     public Persona(String nombre, String codigo, int edad, String sexo, String carrera, String menu, String dia) {
         this.nombre = nombre;
         this.codigo = codigo;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.carrera = carrera;
         this.menu = menu;
         this.dia = dia;
     }
+
+    
 
     public String getCarrera() {
         return carrera;

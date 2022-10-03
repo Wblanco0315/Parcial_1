@@ -49,6 +49,7 @@ public class Menu extends javax.swing.JFrame {
         txtEdad = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         comboBoxCarrera = new javax.swing.JComboBox<>();
+        btnMayores = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,6 +172,13 @@ public class Menu extends javax.swing.JFrame {
 
         comboBoxCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sistemas", "Civil", "Mecanica", "Derecho", "Zootecnia", "Administracion", "Comunicacion social", "Ambiental", "Contaduria" }));
 
+        btnMayores.setText("Mayores y Menores");
+        btnMayores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMayoresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -200,8 +208,8 @@ public class Menu extends javax.swing.JFrame {
                                                 .addComponent(comboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel11)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -244,8 +252,13 @@ public class Menu extends javax.swing.JFrame {
                                 .addGap(62, 62, 62))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                                .addComponent(jLabel9)
-                                .addGap(236, 236, 236))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(236, 236, 236))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btnMayores)
+                                        .addGap(148, 148, 148))))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,7 +322,9 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(diaMasVendidoDelMenu)
                         .addGap(20, 20, 20)
-                        .addComponent(diaMenosVendidoDelMenu)))
+                        .addComponent(diaMenosVendidoDelMenu)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnMayores)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -369,6 +384,10 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxSexoActionPerformed
 
+    private void btnMayoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMayoresActionPerformed
+       gestion.MayorYMenorEdad();
+    }//GEN-LAST:event_btnMayoresActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -410,6 +429,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnMasVendido;
+    private javax.swing.JToggleButton btnMayores;
     private javax.swing.JButton btnMenosVendido;
     private javax.swing.JButton btnPromedioPorMenu;
     private javax.swing.JButton btnRetirar;
