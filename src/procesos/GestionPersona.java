@@ -5,6 +5,8 @@ import static interfaz.Menu.txtCodigo;
 import static interfaz.Menu.txtNombre;
 import modelos.Persona;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 
 public class GestionPersona {
@@ -468,19 +470,20 @@ public class GestionPersona {
         }
 
     }
+    
+    public void imprimirAlfabetico(){
+        
+    }
+    
 
     public void MayorYMenorEdad() {
-        int men=0,may = 0;
+        int men=0;
         for (int i = 0; i < listaPersonas.size(); i++) {
             int edad = listaPersonas.get(i).getEdad();
             if (edad<18) {
-                men=men+1;
-            }
-            if(edad>=18){
-                may=may+1;
+                men++;
             }
         }
-        JOptionPane.showMessageDialog(null, "Hay "+men+" Menores de edad\n Hay "+may+" mayores de edad");
-
+        JOptionPane.showMessageDialog(null, "Hay "+men+" Menores de edad");
     }
 }
