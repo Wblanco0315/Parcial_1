@@ -390,9 +390,8 @@ public class GestionPersona {
                     diaN = "Lunes, Martes, Miercoles, Jueves, Viernes";
                     JOptionPane.showMessageDialog(null, "Los dias " + diaN + " estan vacios");
                     break;
-                }
-
-                if (lunes1 < martes1 && lunes1 < miercoles1 && lunes1 < jueves1 && lunes1 < viernes1) {
+                }else{
+                    if (lunes1 < martes1 && lunes1 < miercoles1 && lunes1 < jueves1 && lunes1 < viernes1) {
                     menor = lunes1;
                     diaN = "Lunes";
                 } else if (martes1 < miercoles1 && martes1 < jueves1 && martes1 < viernes1) {
@@ -408,7 +407,10 @@ public class GestionPersona {
                     menor = viernes1;
                     diaN = "Viernes";
                 }
-                JOptionPane.showMessageDialog(null, "El dia menos vendido del menu 1 fue el " + diaN + " con " + menor + " menus vendidos");
+                    JOptionPane.showMessageDialog(null, "El dia menos vendido del menu 1 fue el " + diaN + " con " + menor + " menus vendidos");
+                }
+                
+                
 
             }
             case 2 -> {
@@ -472,11 +474,14 @@ public class GestionPersona {
     }
     
     public void imprimirAlfabetico(){
-        
+        Collections.sort(listaPersonas,(Persona p1,Persona p2)->p1.getNombre().compareTo(p2.getNombre()));
+       for(Persona persona: listaPersonas){
+           JOptionPane.showMessageDialog(null,persona.toString());
+       }
     }
     
 
-    public void MayorYMenorEdad() {
+    public void MenorEdad() {
         int men=0;
         for (int i = 0; i < listaPersonas.size(); i++) {
             int edad = listaPersonas.get(i).getEdad();

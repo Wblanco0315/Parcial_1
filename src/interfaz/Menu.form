@@ -95,17 +95,15 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="btnImprimirAlfabeticamente" pref="252" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="btnMayores" max="32767" attributes="0"/>
-                                      <Component id="btnMasVendido" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="btnMenosVendido" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="btnVentasPorMenu" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="btnPromedioPorMenu" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="mayorDia_menorDia" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="btnTotalVendido" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="diaMasVendidoDelMenu" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="diaMenosVendidoDelMenu" alignment="1" pref="252" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="btnMayores" max="32767" attributes="0"/>
+                                  <Component id="btnMasVendido" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnMenosVendido" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnVentasPorMenu" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnPromedioPorMenu" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="mayorDia_menorDia" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnTotalVendido" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="diaMasVendidoDelMenu" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="diaMenosVendidoDelMenu" alignment="1" pref="252" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           </Group>

@@ -386,7 +386,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxSexoActionPerformed
 
     private void btnMayoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMayoresActionPerformed
-       gestion.MayorYMenorEdad();
+       gestion.MenorEdad();
     }//GEN-LAST:event_btnMayoresActionPerformed
 
     private void btnImprimirAlfabeticamenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirAlfabeticamenteActionPerformed

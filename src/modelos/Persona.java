@@ -76,5 +76,10 @@ public class Persona {
     public void setDia(String dia) {
         this.dia = dia;
     }
+    
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + "\nCodigo: " + codigo + "\nEdad: " + edad + "\nSexo: " + sexo + "\nCarrera: " + carrera + "\nMenu: " + menu + "\nDia: " + dia;
+    }
 
 }
