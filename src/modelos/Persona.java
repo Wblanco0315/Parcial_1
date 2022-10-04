@@ -6,11 +6,12 @@ public class Persona {
     private String codigo;
     private int edad;
     private String sexo;
+    private boolean estado;
     private String carrera;
     private String menu;
     private String dia;
 
-    public Persona(String nombre, String codigo, int edad, String sexo, String carrera, String menu, String dia) {
+    public Persona(String nombre, String codigo, int edad, String sexo, boolean estado, String carrera, String menu, String dia) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.edad = edad;
@@ -20,7 +21,14 @@ public class Persona {
         this.dia = dia;
     }
 
-    
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     public String getCarrera() {
         return carrera;
     }
@@ -76,7 +84,7 @@ public class Persona {
     public void setDia(String dia) {
         this.dia = dia;
     }
-    
+
     @Override
     public String toString() {
         return "Nombre: " + nombre + "\nCodigo: " + codigo + "\nEdad: " + edad + "\nSexo: " + sexo + "\nCarrera: " + carrera + "\nMenu: " + menu + "\nDia: " + dia;

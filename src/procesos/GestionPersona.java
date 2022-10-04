@@ -22,6 +22,7 @@ public class GestionPersona {
     String codigo;
     int edad;
     String sexo;
+    boolean estado;
     String carrera;
     String menu;
     String dia;
@@ -47,11 +48,12 @@ public class GestionPersona {
             return;
         }
         sexo = String.valueOf(Menu.comboBoxSexo.getSelectedItem());
+        estado = true;
         carrera = String.valueOf(Menu.comboBoxCarrera.getSelectedItem());
         menu = String.valueOf(Menu.comboBoxMenu.getSelectedItem());
         dia = String.valueOf(Menu.comboBoxDia.getSelectedItem());
         //Crea un objeto de tipo persona y llena los atributos
-        persona = new Persona(nombre, codigo, edad, sexo, carrera, menu, dia);
+        persona = new Persona(nombre, codigo, edad, sexo, estado, carrera, menu, dia);
         //Añade el objeto a la lista
 
         if (nombre.equals("") || codigo.equals("")) {
@@ -133,8 +135,14 @@ public class GestionPersona {
         if (posicion == -1) {//si no se encontraron coincidencias nos muestra el mensaje
             JOptionPane.showMessageDialog(null, "Intente de nuevo!");
             return;
-        }//Elimina el objeto ya que ha sido entregado
-        listaPersonas.remove(posicion);
+        }//Obtenemos el turno que se busco
+        Persona temp = listaPersonas.get(posicion);
+        //Verifica si el almuerzo ya fue entregado
+        if (!temp.isEstado()) {
+            JOptionPane.showMessageDialog(null, "El almuerzo ya fue entregado previamente");
+        }
+        //Marca el estado como entregado
+        temp.setEstado(false);
         JOptionPane.showMessageDialog(null, "El almuerzo fue entregado al usuario");
         return;
     }
@@ -390,27 +398,25 @@ public class GestionPersona {
                     diaN = "Lunes, Martes, Miercoles, Jueves, Viernes";
                     JOptionPane.showMessageDialog(null, "Los dias " + diaN + " estan vacios");
                     break;
-                }else{
-                    if (lunes1 < martes1 && lunes1 < miercoles1 && lunes1 < jueves1 && lunes1 < viernes1) {
-                    menor = lunes1;
-                    diaN = "Lunes";
-                } else if (martes1 < miercoles1 && martes1 < jueves1 && martes1 < viernes1) {
-                    menor = martes1;
-                    diaN = "Martes";
-                } else if (miercoles1 < jueves1 && miercoles1 < viernes1) {
-                    menor = miercoles1;
-                    diaN = "Miercoles";
-                } else if (jueves1 < viernes1) {
-                    menor = jueves1;
-                    diaN = "Jueves";
                 } else {
-                    menor = viernes1;
-                    diaN = "Viernes";
-                }
+                    if (lunes1 < martes1 && lunes1 < miercoles1 && lunes1 < jueves1 && lunes1 < viernes1) {
+                        menor = lunes1;
+                        diaN = "Lunes";
+                    } else if (martes1 < miercoles1 && martes1 < jueves1 && martes1 < viernes1) {
+                        menor = martes1;
+                        diaN = "Martes";
+                    } else if (miercoles1 < jueves1 && miercoles1 < viernes1) {
+                        menor = miercoles1;
+                        diaN = "Miercoles";
+                    } else if (jueves1 < viernes1) {
+                        menor = jueves1;
+                        diaN = "Jueves";
+                    } else {
+                        menor = viernes1;
+                        diaN = "Viernes";
+                    }
                     JOptionPane.showMessageDialog(null, "El dia menos vendido del menu 1 fue el " + diaN + " con " + menor + " menus vendidos");
                 }
-                
-                
 
             }
             case 2 -> {
@@ -472,23 +478,40 @@ public class GestionPersona {
         }
 
     }
-    
-    public void imprimirAlfabetico(){
-        Collections.sort(listaPersonas,(Persona p1,Persona p2)->p1.getNombre().compareTo(p2.getNombre()));
-       for(Persona persona: listaPersonas){
-           JOptionPane.showMessageDialog(null,persona.toString());
-       }
-    }
-    
 
-    public void MenorEdad() {
-        int men=0;
+    public void imprimirAlfabetico() {
+        Collections.sort(listaPersonas, (Persona p1, Persona p2) -> p1.getNombre().compareTo(p2.getNombre()));
+        for (Persona persona : listaPersonas) {
+            JOptionPane.showMessageDialog(null, persona.toString());
+        }
+    }
+
+    public void carrerras() {
+        String[] carreras = {"Sistemas", "Civil", "Mecanica", "Ambiental"};
+        int[] cont = {0, 0, 0, 0};
         for (int i = 0; i < listaPersonas.size(); i++) {
-            int edad = listaPersonas.get(i).getEdad();
-            if (edad<18) {
-                men++;
+            String carrera = listaPersonas.get(i).getCarrera();
+            for (int j = 0; j < carreras.length; j++) {
+                if (carrera.equals(carreras[j])) {
+                    cont[j] = cont[j] + 1;
+                }
             }
         }
-        JOptionPane.showMessageDialog(null, "Hay "+men+" Menores de edad");
     }
+
+    public void MenorEdad() {
+        int men = 0;
+        int may = 0;
+        for (int i = 0; i < listaPersonas.size(); i++) {
+            int edad = listaPersonas.get(i).getEdad();
+            if (edad < 18) {
+                men++;
+            }
+            if (edad >= 18) {
+                may++;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Hay " + men + " Menores de edad \n Hay " + may + " Mayores de edad");
+    }
+
 }
