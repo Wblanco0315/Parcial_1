@@ -5,18 +5,17 @@ import static interfaz.Menu.txtCodigo;
 import static interfaz.Menu.txtNombre;
 import modelos.Persona;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import javax.swing.JOptionPane;
 
 public class GestionPersona {
-
-    int menu1 = 0, menu2 = 0, menu3 = 0, mayor, menor, igual;
-    int M[] = {0,0,0,0,0};
-    int dias[][];
-    String menuN;
-    String diaN;
-
+    private int x = 3;
+    private int y = 5;
+    int mayor, menor;
+    String[] diasSemana = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes"};
+    String nombreMenu[] = {"Menu 1", "Menu 2", "Menu 3"};
+    int totalSemanal[] = {0, 0, 0};
+    int totalDias[][];
     String nombre;
     String codigo;
     int edad;
@@ -33,7 +32,7 @@ public class GestionPersona {
         //Constructor
         persona = null;
         this.listaPersonas = new ArrayList<>();
-        dias = new int[2][4];
+        totalDias = new int[3][5];
     }
 
     public void agregar() {
@@ -63,7 +62,7 @@ public class GestionPersona {
             txtNombre.setText("");
             txtCodigo.setText("");
         }
-
+        //Valida que el codigo sea posible agregarse a la lista si es un valor numerico
         try {
             Integer.parseInt(codigo);
         } catch (Exception errors) {
@@ -71,64 +70,21 @@ public class GestionPersona {
                     "Error " + errors.getMessage(), JOptionPane.ERROR_MESSAGE);
             return;
         }
-        //Valida que el codigo sea posible agregarse a la lista si es un valor numerico
+        //Valida que una persona no compre mas de 1 almuerzo el mismo dia 
         if (almuerzoRep(codigo, dia)) {
             JOptionPane.showMessageDialog(null, "Ya has comprado almuerzo para el dia " + dia,
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        //Valida que una persona no compre mas de 1 almuerzo el mismo dia 
-        
-        for(int i=0; i<dias.length; i++){
-            for(int j=0; j<dias.length; j++){
-                dias[i][j]=0;
-            }
-        }
 
-        if ("Menu 1".equals(menu)) { //estos if anidados es para que vaya guardando la cantidad de cada menu
-            menu1++;
-            for(int i=0; i<dias.length; i++){
-                    if("Lunes".equals(dia)){
-                        dias[0][0]++;
-                    }else if("Martes".equals(dia)){
-                        dias[0][1]++;
-                    }else if("Miercoles".equals(dia)){
-                        dias[0][2]++;
-                    }else if("Jueves".equals(dia)){
-                        dias[0][3]++;
-                    }else{
-                        dias[0][4]++;
-                    }
+        for (int i = 0; i < nombreMenu.length; i++) {
+            if (nombreMenu[i].equals(menu)) {
+                totalSemanal[i] = totalSemanal[i] + 1;
             }
-        } else if ("Menu 2".equals(menu)) {
-            menu2++;
-            for(int i=0; i<dias.length; i++){
-                    if("Lunes".equals(dia)){
-                        dias[1][0]++;
-                    }else if("Martes".equals(dia)){
-                        dias[1][1]++;
-                    }else if("Miercoles".equals(dia)){
-                        dias[1][2]++;
-                    }else if("Jueves".equals(dia)){
-                        dias[1][3]++;
-                    }else{
-                        dias[1][4]++;
-                    }
-            }
-        } else {
-            menu3++;
-            for(int i=0; i<dias.length; i++){
-                    if("Lunes".equals(dia)){
-                        dias[2][0]++;
-                    }else if("Martes".equals(dia)){
-                        dias[2][1]++;
-                    }else if("Miercoles".equals(dia)){
-                        dias[2][2]++;
-                    }else if("Jueves".equals(dia)){
-                        dias[2][3]++;
-                    }else{
-                        dias[2][4]++;
-                    }
+            for (int j = 0; j < diasSemana.length; j++) {
+                if (diasSemana.equals(dia)) {
+                    totalDias[i][j] = totalDias[i][j] + 1;
+                }
             }
         }
 
@@ -158,7 +114,7 @@ public class GestionPersona {
     //cabaña villa saam barrio el atillo
 
     public int buscar(String cod) {
-        String[] diasSemana = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes"};
+
         int index = 0;//inicializamos el index
         int op = Integer.parseInt(JOptionPane.showInputDialog("Seleccione el dia \n1.Lunes\n2.Martes\n3.Miercoles" + "\n4.Jueves\n.5.Viernes\n6.Sabado"));
         for (Persona persona : listaPersonas) {
@@ -184,83 +140,100 @@ public class GestionPersona {
         return -1;
     }
 
-    public void masVendido() {
-        /*al tomar los valores de cada menu, lo que hace es validar quien es el mayor, y asi
-        guardarlo en una variable para mostrar en pantalla */
-        if (menu1 > menu2 && menu1 > menu3) {
-            mayor = menu1;
-            menuN = "Menu 1";
-        } else if (menu2 > menu1 && menu2 > menu3) {
-            mayor = menu2;
-            menuN = "Menu 2";
-        } else {
-            mayor = menu3;
-            menuN = "Menu 3";
+    private int validacionMenu() {
+        int total = totalSemanal[0] + totalSemanal[1] + totalSemanal[2];
+        int index = 0;
+        if (total == 0) {
+            JOptionPane.showMessageDialog(null, "No se han vendido menus");
+            return -1;
         }
-        JOptionPane.showMessageDialog(null, "El Menu mas vendido fue el " + menuN + " con " + mayor + " compras");
+        if (totalSemanal[0] == totalSemanal[1] && totalSemanal[1] == totalSemanal[2]) {
+            JOptionPane.showMessageDialog(null, "Todas las ventas son iguales");
+            return -1;
+        }
+        return 1;
+    }
+
+    public void masVendido() {
+        //Se compara valor por valor y el numero mayor se guarda en una variable junto al indice para indicar que menu fue
+        mayor = 0;
+        int pos = 0;
+        int a = 0;
+        int b = 0;
+        int resp = validacionMenu();
+        if (resp != -1) {
+            if (totalSemanal[0] != totalSemanal[1] && totalSemanal[1] != totalSemanal[2]) {
+                for (int i = 0; i < totalSemanal.length; i++) {
+                    if (totalSemanal[i] > mayor) {
+                        mayor = totalSemanal[i];
+                        pos = i;
+                    }
+                }
+                JOptionPane.showMessageDialog(null, "El Menu mas vendido fue el " + nombreMenu[pos] + " con " + mayor + " compras");
+            } else {
+                for (int i = 0; i < totalSemanal.length; i++) {
+                    for (int j = i + 1; j < totalSemanal.length; j++) {
+                        if (totalSemanal[i] == totalSemanal[j]) {
+                            a = i;
+                            b = j;
+                        }
+                    }
+                }
+                JOptionPane.showMessageDialog(null, "Los mas vendidos son " + nombreMenu[a] + " y " + nombreMenu[b] + "\ncon " + totalSemanal[a] + " ventas cada uno");
+            }
+        }
+
     }
 
     public void menosVendido() {
-        /*al tomar los valores de cada menu, lo que hace es validar quien es el menor, y asi
-        guardarlo en una variable para mostrar en pantalla */
-        if(menu1!=menu2 && menu1!=menu3 && menu2!=menu3){
-            if (menu1 < menu2 && menu1 < menu3) {
-            menor = menu1;
-            menuN = "Menu 1";
-            } else if (menu2 < menu1 && menu2 < menu3) {
-            menor = menu2;
-            menuN = "Menu 2";
+        menor = totalSemanal[0];
+        int cont = 0;
+        int pos = 0;
+        int a = 0;
+        int b = 0;
+        int resp = validacionMenu();
+        if (resp != -1) {
+            if (totalSemanal[0] != totalSemanal[1] && totalSemanal[1] != totalSemanal[2]) {
+                for (int i = 0; i < totalSemanal.length; i++) {
+                    if (totalSemanal[i] < menor) {
+                        menor = totalSemanal[i];
+                        pos = i;
+                    }
+                }
+                JOptionPane.showMessageDialog(null, "El Menu menos vendido fue el " + nombreMenu[pos] + " con " + menor + " compras");
             } else {
-            menor = menu3;
-            menuN = "Menu 3";
-            }
-        JOptionPane.showMessageDialog(null, "El Menu menos vendido fue el " + menuN + " con " + menor + " compras");
-        }else{
-            if(menu1==menu2 && menu1==menu3 && menu2==menu3){
-                JOptionPane.showMessageDialog(null, "los tres menus tienen el mismo valor");
-            }else if(menu1==menu2 || menu1==menu3 || menu2==menu3){
-                JOptionPane.showMessageDialog(null, "hay dos menus con el mismo valor");
+                for (int i = 0; i < totalSemanal.length; i++) {
+                    for (int j = i + 1; j < totalSemanal.length; j++) {
+                        if (totalSemanal[i] == totalSemanal[j]) {
+                            a = i;
+                            b = j;
+                        }
+                    }
+                }
+                JOptionPane.showMessageDialog(null, "Los menos vendidos son " + nombreMenu[a] + " y " + nombreMenu[b] + "\ncon " + totalSemanal[a] + " ventas cada uno");
             }
         }
+
     }
 
     public void ventas() {
         //tomamos los valores guardados del agregar y lo mostramos en pantalla
-        JOptionPane.showMessageDialog(null, "Menu 1: " + menu1 + "\nMenu 2: " + menu2 + "\nMenu3: " + menu3);
+        JOptionPane.showMessageDialog(null, "Menu 1: " + totalSemanal[0] + "\nMenu 2: " + totalSemanal[1] + "\nMenu3: " + totalSemanal[2]);
     }
 
     public void total() {
         //sumamos los menus
-        int total = menu1 + menu2 + menu3;
+        int total = totalSemanal[0] + totalSemanal[1] + totalSemanal[2];
         JOptionPane.showMessageDialog(null, "El total vendido fue de " + total + " menus");
+
     }
 
     public void promedioSemana() {
         double promedio;
-        int n = Integer.parseInt(JOptionPane.showInputDialog("""
-                Ingrese el menu que desea conocer el promedio
-                1. Menu 1
-                2. Menu 2
-                3. Menu 3"""));
-        //realizamos el calculo de las ventas de los menus entre el numero de dias de la semana
-        switch (n) {
-            case 1 -> {
-                promedio = Double.valueOf(menu1) / 5;
-                JOptionPane.showMessageDialog(null, "El promedio de ventas de la semana del Menu 1 es " + promedio);
-            }
-            case 2 -> {
-                promedio = Double.valueOf(menu2) / 5;
-                JOptionPane.showMessageDialog(null, "El promedio de ventas de la semana del Menu 2 es " + promedio);
-            }
-            case 3 -> {
-                promedio = Double.valueOf(menu3) / 5;
-                JOptionPane.showMessageDialog(null, "El promedio de ventas de la semana del Menu 3 es " + promedio);
-            }
-
-            default ->
-                JOptionPane.showMessageDialog(null, "Ha ingresado una opción incorrecta");
+        for (int i = 0; i < totalSemanal.length; i++) {
+            promedio = totalSemanal[i] / diasSemana.length;
+            JOptionPane.showMessageDialog(null, "El promedio de ventas de la semana del " + nombreMenu[i] + " es " + Math.ceil(promedio));
         }
-
     }
 
     private boolean almuerzoRep(String codigo, String dia) {
@@ -274,207 +247,23 @@ public class GestionPersona {
         return false;
     }
 
-    /* Hacemos la suma de los dias en cada menu 
-    despues hacemos una comparacion entre los totales de la suma 
-    y mostramos el mayor y el menor*/
-    public void mayorDia_menorDia() {
-        String x="",y="";
-        int X,Y;
-        for (int i = 0; i < dias.length; i++) {
-                M[0]=M[0]+dias[i][0];
-                M[1]=M[1]+dias[i][1];
-                M[2]=M[2]+dias[i][2];
-                M[3]=M[3]+dias[i][3];
-                M[4]=M[4]+dias[i][4];
-        }
-        for(int i=0; i<M.length; i++){
-            if(M[i]<M[i+1]){
-                menor=M[i];
-                X=i;
-                if(X==0){
-                    x="Lunes";
-                }else if(X==1){
-                    x="Martes";
-                }else if(X==2){
-                    x="Miercoles";
-                }else if(X==3){
-                    x="Jueves";
-                }else{
-                    x="Viernes";
-                }
-            }
-            if(M[i]>M[i+1]){
-                mayor=M[i];
-                Y=i;
-                if(Y==0){
-                    y="Lunes";
-                }else if(Y==1){
-                    y="Martes";
-                }else if(Y==2){
-                    y="Miercoles";
-                }else if(Y==3){
-                    y="Jueves";
-                }else{
-                    y="Viernes";
-                }
-            }
-        }
-        JOptionPane.showMessageDialog(null, "El dia mas vendido fue el "+y+" con "+mayor+" menus vendidos\n"
-                                        + "El dia menos vendido fue el "+x+" con "+menor+" menus vendidos");
-    }
-
     /* Hacemos una comparacion entre las filas (dias) de cada menu
     y mostramos el dia mas vendido del menu seleccionado */
     public void diaMasVendidoDelMenu() {
-        int x;
-        int op = Integer.parseInt(JOptionPane.showInputDialog("Escoja un menu"
-                + "\n1. Menu 1"
-                + "\n2. Menu 2"
-                + "\n3. Menu 3"));
-
-        switch (op) {
-            case 1 -> {
-                for(int i=0; i<dias.length; i++){
-                    if(dias[0][i]>dias[0][i+1]){
-                        mayor = dias[0][i];
-                        x=i;
-                        if(x==0){
-                            diaN="Lunes";
-                        }else if(x==1){
-                            diaN="Martes";
-                        }else if(x==2){
-                            diaN="Miercoles";
-                        }else if(x==3){
-                            diaN="Jueves";
-                        }else{
-                            diaN="Viernes";
-                        }
-                    }
-                }
-                JOptionPane.showMessageDialog(null, "El dia mas vendido fue el "+diaN+" con "+mayor+" menus vendidos");
-            }
-            case 2 -> {
-                for(int i=0; i<dias.length; i++){
-                    if(dias[1][i]>dias[1][i+1]){
-                        mayor = dias[1][i];
-                        x=i;
-                        if(x==0){
-                            diaN="Lunes";
-                        }else if(x==1){
-                            diaN="Martes";
-                        }else if(x==2){
-                            diaN="Miercoles";
-                        }else if(x==3){
-                            diaN="Jueves";
-                        }else{
-                            diaN="Viernes";
-                        }
-                    }
-                }
-                JOptionPane.showMessageDialog(null, "El dia mas vendido fue el "+diaN+" con "+mayor+" menus vendidos");
-            }
-            case 3 -> {
-                for(int i=0; i<dias.length; i++){
-                    if(dias[2][i]>dias[2][i+1]){
-                        mayor = dias[2][i];
-                        x=i;
-                        if(x==0){
-                            diaN="Lunes";
-                        }else if(x==1){
-                            diaN="Martes";
-                        }else if(x==2){
-                            diaN="Miercoles";
-                        }else if(x==3){
-                            diaN="Jueves";
-                        }else{
-                            diaN="Viernes";
-                        }
-                    }
-                }
-                JOptionPane.showMessageDialog(null, "El dia mas vendido fue el "+diaN+" con "+mayor+" menus vendidos");
-            }
-            default ->
-                JOptionPane.showMessageDialog(null, "Ha ingresado una opción incorrecta");
-        }
+       
     }
 
     /* Hacemos una comparacion entre las filas (dias) de cada menu
     y mostramos el dia menos vendido del menu seleccionado */
     public void diaMenosVendidoDelMenu() {
-        int x;
-        int op = Integer.parseInt(JOptionPane.showInputDialog("Escoja un menu"
-                + "\n1. Menu 1"
-                + "\n2. Menu 2"
-                + "\n3. Menu 3"));
-
-        switch (op) {
-            case 1 -> {
-                for(int i=0; i<dias.length; i++){
-                    if(dias[0][i]<dias[0][i+1]){
-                        menor = dias[0][i];
-                        x=i;
-                        if(x==0){
-                            diaN="Lunes";
-                        }else if(x==1){
-                            diaN="Martes";
-                        }else if(x==2){
-                            diaN="Miercoles";
-                        }else if(x==3){
-                            diaN="Jueves";
-                        }else{
-                            diaN="Viernes";
-                        }
-                    }
-                }
-                JOptionPane.showMessageDialog(null, "El dia menos vendido fue el "+diaN+" con "+menor+" menus vendidos");
-            }
-            case 2 -> {
-                for(int i=0; i<dias.length; i++){
-                    if(dias[1][i]<dias[1][i+1]){
-                        menor = dias[1][i];
-                        x=i;
-                        if(x==0){
-                            diaN="Lunes";
-                        }else if(x==1){
-                            diaN="Martes";
-                        }else if(x==2){
-                            diaN="Miercoles";
-                        }else if(x==3){
-                            diaN="Jueves";
-                        }else{
-                            diaN="Viernes";
-                        }
-                    }
-                }
-                JOptionPane.showMessageDialog(null, "El dia menos vendido fue el "+diaN+" con "+menor+" menus vendidos");
-            }
-            case 3 -> {
-                for(int i=0; i<dias.length; i++){
-                    if(dias[2][i]<dias[2][i+1]){
-                        menor = dias[2][i];
-                        x=i;
-                        if(x==0){
-                            diaN="Lunes";
-                        }else if(x==1){
-                            diaN="Martes";
-                        }else if(x==2){
-                            diaN="Miercoles";
-                        }else if(x==3){
-                            diaN="Jueves";
-                        }else{
-                            diaN="Viernes";
-                        }
-                    }
-                }
-                JOptionPane.showMessageDialog(null, "El dia menos vendido fue el "+diaN+" con "+menor+" menus vendidos");              
-            }
-            default ->
-                JOptionPane.showMessageDialog(null, "Ha ingresado una opción incorrecta");
-        }
 
     }
 
     public void imprimirAlfabetico() {
+        if (listaPersonas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
+            return;
+        }
         Collections.sort(listaPersonas, (Persona p1, Persona p2) -> p1.getNombre().compareTo(p2.getNombre()));
         for (Persona persona : listaPersonas) {
             JOptionPane.showMessageDialog(null, persona.toString());
@@ -482,6 +271,10 @@ public class GestionPersona {
     }
 
     public void carrerras() {
+        if (listaPersonas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
+            return;
+        }
         String[] carreras = {"Sistemas", "Civil", "Mecanica", "Ambiental"};
         int[] cont = {0, 0, 0, 0};
         for (int i = 0; i < listaPersonas.size(); i++) {
@@ -492,9 +285,16 @@ public class GestionPersona {
                 }
             }
         }
+        for (int i = 0; i < carreras.length; i++) {
+            JOptionPane.showMessageDialog(null, "Total estudiantes de " + carreras[i] + ": " + cont[i]);
+        }
     }
 
     public void MenorEdad() {
+        if (listaPersonas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "La lista esta vacia");
+            return;
+        }
         int men = 0;
         int may = 0;
         for (int i = 0; i < listaPersonas.size(); i++) {
@@ -508,5 +308,4 @@ public class GestionPersona {
         }
         JOptionPane.showMessageDialog(null, "Hay " + men + " Menores de edad \n Hay " + may + " Mayores de edad");
     }
-
 }

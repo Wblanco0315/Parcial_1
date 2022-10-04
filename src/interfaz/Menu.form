@@ -100,10 +100,10 @@
                                   <Component id="btnMenosVendido" alignment="1" max="32767" attributes="0"/>
                                   <Component id="btnVentasPorMenu" alignment="1" max="32767" attributes="0"/>
                                   <Component id="btnPromedioPorMenu" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="mayorDia_menorDia" alignment="1" max="32767" attributes="0"/>
                                   <Component id="btnTotalVendido" alignment="1" max="32767" attributes="0"/>
                                   <Component id="diaMasVendidoDelMenu" alignment="1" max="32767" attributes="0"/>
                                   <Component id="diaMenosVendidoDelMenu" alignment="1" pref="252" max="32767" attributes="0"/>
+                                  <Component id="jToggleButton1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           </Group>
@@ -174,13 +174,9 @@
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnPromedioPorMenu" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="mayorDia_menorDia" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnTotalVendido" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -191,8 +187,12 @@
                       <Component id="btnMayores" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnImprimirAlfabeticamente" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -320,14 +320,6 @@
         <Property name="text" type="java.lang.String" value="Dia"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="mayorDia_menorDia">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="mayor y menor venta por dia"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mayorDia_menorDiaActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Darwin Portillo Rivera - 191998"/>
@@ -433,7 +425,7 @@
     </Component>
     <Component class="javax.swing.JToggleButton" name="btnMayores">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mayores y Menores"/>
+        <Property name="text" type="java.lang.String" value="Mayores y Menores de edad"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMayoresActionPerformed"/>
@@ -445,6 +437,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImprimirAlfabeticamenteActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Almuerzos comprados por carrera"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
